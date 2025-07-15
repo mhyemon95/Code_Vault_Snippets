@@ -25,7 +25,7 @@ function App() {
           <div className="container mx-auto px-4">
             <div className="text-center">
               <p className="text-gray-400">
-                © 2025 CodeVault. Made with ❤️ for developers by developers.
+                © 2025 CodeVault.Developed by Meherub Hossain Yemon.
               </p>
               <div className="mt-4 space-x-6">
                 <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">

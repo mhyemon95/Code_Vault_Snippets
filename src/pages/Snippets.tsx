@@ -6,19 +6,8 @@ import SnippetCard from '../components/SnippetCard';
 import CategoryFilter from '../components/CategoryFilter';
 import { Filter, Grid, List } from 'lucide-react';
 
-// TEMP: Only show selected CSS snippets for live preview
-const previewSnippetTitles = [
-  'Gradient Background',
-  'Neumorphic Button',
-  'Hover Zoom Effect',
-  'Pulse Animation',
-  'Flexbox Centering',
-  'CSS Tooltip',
-  'Scroll Progress Bar',
-];
-const filteredSnippets = snippets.filter(
-  s => previewSnippetTitles.includes(s.title)
-);
+// Remove the TEMP filter and use all snippets
+const filteredSnippets = snippets; // Show all snippets instead of filtered ones
 
 export default function Snippets() {
   const location = useLocation();
@@ -27,6 +16,7 @@ export default function Snippets() {
   const [sortBy, setSortBy] = useState('newest');
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [displayedSnippets, setDisplayedSnippets] = useState<CodeSnippet[]>([]);
 
   // Handle URL parameters
   useEffect(() => {
@@ -39,7 +29,7 @@ export default function Snippets() {
 
   // Filter and sort snippets
   useEffect(() => {
-    let filtered = [...snippets]; // Use original snippets for full filtering
+    let filtered = [...snippets]; // Use all snippets
 
     // Filter by category
     if (selectedCategory !== 'all') {
@@ -77,7 +67,7 @@ export default function Snippets() {
         break;
     }
 
-    // setFilteredSnippets(filtered); // This line is removed as filteredSnippets is now a constant
+    setDisplayedSnippets(filtered);
   }, [selectedCategory, selectedDifficulty, searchQuery, sortBy]);
 
   return (
@@ -168,11 +158,11 @@ export default function Snippets() {
             </div>
 
             {/* Snippets Grid */}
-            {snippets.length > 0 ? (
+            {displayedSnippets.length > 0 ? (
               <div className={`grid gap-6 ${
                 viewMode === 'grid' ? 'lg:grid-cols-2' : 'grid-cols-1'
               }`}>
-                {snippets.map((snippet) => (
+                {displayedSnippets.map((snippet) => (
                   <SnippetCard key={snippet.id} snippet={snippet} />
                 ))}
               </div>
@@ -193,3 +183,4 @@ export default function Snippets() {
     </div>
   );
 }
+

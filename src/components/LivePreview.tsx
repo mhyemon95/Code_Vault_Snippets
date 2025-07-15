@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+  import React, { useEffect, useRef, useState } from 'react';
 import { Eye, EyeOff, Maximize2, Minimize2 } from 'lucide-react';
 
 interface LivePreviewProps {
@@ -167,6 +167,14 @@ export default function LivePreview({ code, language, title }: LivePreviewProps)
         </div>
       `;
     }
+    
+    if (cssCode.includes('.keyframe-spinner')) {
+      return `
+        <div style="display: flex; align-items: center; justify-content: center; height: 200px;">
+          <div class="keyframe-spinner"></div>
+        </div>
+      `;
+    }
 
     if (cssCode.includes('.grid-container')) {
       return `
@@ -236,6 +244,15 @@ export default function LivePreview({ code, language, title }: LivePreviewProps)
         </div>
       `;
     }
+    if (cssCode.includes('.bounce-hover')) {
+      return `
+        <div style="display: flex; align-items: center; justify-content: center; height: 200px;">
+          <div class="bounce-hover" style="padding: 12px 24px; background: #4f46e5; color: white; border-radius: 8px; cursor: pointer; font-weight: 500;">
+            Hover to Bounce
+          </div>
+        </div>
+      `;
+    }
     if (cssCode.includes('.scroll-progress-bar')) {
       return `
         <div style="height: 200px; overflow-y: scroll; position: relative; background: #f3f4f6; border-radius: 12px;">
@@ -255,6 +272,131 @@ export default function LivePreview({ code, language, title }: LivePreviewProps)
               bar.style.width = percent + '%';
             });
           </script>
+        </div>
+      `;
+    }
+
+    if (cssCode.includes('.blinking-text')) {
+      return `
+        <div style="display: flex; align-items: center; justify-content: center; height: 200px;">
+          <div class="blinking-text" style="font-size: 1.5rem;">
+            This text is blinking!
+          </div>
+        </div>
+      `;
+    }
+    
+    if (cssCode.includes('.marquee')) {
+      return `
+        <div style="padding: 20px;">
+          <h3 style="margin-bottom: 20px; color: #374151;">Marquee Effect</h3>
+          <div class="marquee">
+            <div class="marquee-content">
+              🎉 This is a scrolling marquee text that moves infinitely from right to left! 🎉
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    if (cssCode.includes('.glow-text')) {
+      return `
+        <div style="display: flex; align-items: center; justify-content: center; height: 200px;">
+          <div class="glow-text" style="font-size: 1.5rem;">
+            This text is glowing! 🌟
+          </div>
+        </div>
+      `;
+    }
+
+    if (cssCode.includes('.reveal-hover')) {
+      return `
+        <div style="display: flex; align-items: center; justify-content: center; height: 200px;">
+          <div class="reveal-hover" style="font-size: 1.5rem; cursor: pointer;">
+            <span>Hover to reveal text!</span>
+          </div>
+        </div>
+      `;
+    }
+
+    if (cssCode.includes('.gallery-grid')) {
+      return `
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=300&fit=crop" alt="Gallery 1">
+            <div class="gallery-overlay">
+              <div class="gallery-title">Mountain View</div>
+              <div class="gallery-description">Beautiful landscape photography</div>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=300&fit=crop" alt="Gallery 2">
+            <div class="gallery-overlay">
+              <div class="gallery-title">Forest Path</div>
+              <div class="gallery-description">Peaceful nature scene</div>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300&h=300&fit=crop" alt="Gallery 3">
+            <div class="gallery-overlay">
+              <div class="gallery-title">Ocean Waves</div>
+              <div class="gallery-description">Coastal photography</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    if (cssCode.includes('.sticky-header')) {
+      return `
+        <div style="height: 400px; overflow-y: scroll; border: 1px solid #e5e7eb; border-radius: 8px;">
+          <header class="sticky-header" id="header">
+            <nav class="nav-container">
+              <div class="logo">Brand</div>
+              <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </nav>
+          </header>
+          <div class="content">
+            <h1>Scroll to see sticky header</h1>
+            <div style="height: 800px; background: linear-gradient(to bottom, #f3f4f6, #e5e7eb); padding: 20px;">
+              <p>Content area... Keep scrolling to see the sticky header effect.<ip>
+            <fdiv>
+          </div>
+        </div>
+      `;
+    }
+
+    if (cssCode.includes('.search-container')) {
+      return `
+        <div style="padding: 40px; display: flex; justify-content: center;">
+          <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search...">
+            <button class="search-btn">🔍</button>
+          </div>
+        </div>
+      `;
+    }
+
+    if (cssCode.includes('.fab-container')) {
+      return `
+        <div style="position: relative; height: 300px; background: #f8fafc; border-radius: 8px; overflow: hidden;">
+          <div class="fab-container">
+            <div class="fab-menu" id="fabMenu">
+              <button class="fab-item" title="Edit">✏️</button>
+              <button class="fab-item" title="Share">📤</button>
+              <button class="fab-item" title="Delete">🗑️</button>
+            </div>
+            <button class="fab-main" id="fabMain">+</button>
+          </div>
+          <div style="padding: 20px;">
+            <h3>Click the floating button</h3>
+            <p>The FAB is positioned in the bottom right corner</p>
+          </div>
         </div>
       `;
     }
@@ -337,6 +479,43 @@ export default function LivePreview({ code, language, title }: LivePreviewProps)
       `;
     }
 
+    if (title === 'Drag and Drop File Upload') {
+      return `
+        <div class="upload-area" id="uploadArea">
+          <div class="upload-content">
+            <div class="upload-icon">📁</div>
+            <h3>Drag & Drop Files Here</h3>
+            <p>or <span class="browse-link">browse files</span></p>
+            <input type="file" id="fileInput" multiple hidden>
+          </div>
+          <div class="file-list" id="fileList"></div>
+        </div>
+      `;
+    }
+
+    if (title === 'Color Picker Tool') {
+      return `
+        <div class="color-picker-container">
+          <div class="color-display" id="colorDisplay"></div>
+          <input type="color" id="colorInput" value="#4f46e5">
+          <div class="color-values">
+            <div class="value-group">
+              <label>HEX:</label>
+              <input type="text" id="hexValue" readonly>
+            </div>
+            <div class="value-group">
+              <label>RGB:</label>
+              <input type="text" id="rgbValue" readonly>
+            </div>
+            <div class="value-group">
+              <label>HSL:</label>
+              <input type="text" id="hslValue" readonly>
+            </div>
+          </div>
+          <button id="copyColor">Copy HEX</button>
+        </div>
+      `;
+    }
     if (title === 'Copy to Clipboard Button') {
       return `
         <div>
@@ -656,7 +835,8 @@ export default function LivePreview({ code, language, title }: LivePreviewProps)
     }
     if (title === 'Step Progress Bar') {
       return `
-        <div class="step-progress">
+ 
+       <div class="step-progress">
           <div class="step active">1</div>
           <div class="step">2</div>
           <div class="step">3</div>
@@ -738,7 +918,8 @@ export default function LivePreview({ code, language, title }: LivePreviewProps)
             <li>✔ Unlimited Projects</li>
             <li>✔ Priority Support</li>
             <li>✔ Advanced Analytics</li>
-          </ul>
+ 
+         </ul>
           <button class="cta">Get Started</button>
         </div>
         <style>
@@ -821,3 +1002,6 @@ export default function LivePreview({ code, language, title }: LivePreviewProps)
     </div>
   );
 }
+
+
+
